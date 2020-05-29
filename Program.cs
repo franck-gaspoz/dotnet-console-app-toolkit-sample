@@ -1,5 +1,5 @@
 ﻿using System;
-using static DotNetConsoleSdk.Component.CLI.CommandEngine;
+using static DotNetConsoleSdk.Component.CommandLine.CommandEngine;
 using static DotNetConsoleSdk.DotNetConsole;
 
 namespace DotNetConsoleSdkSample
@@ -14,7 +14,7 @@ namespace DotNetConsoleSdkSample
             else
             {
                 //RunSampleCLI("(f=yellow,exec=[[System.IO.Path.GetFileName(System.Environment.CurrentDirectory)]]) > ");
-                var returnCode = ShellSample.RunShell(args, "(f=yellow)> ");
+                var returnCode = TerminalSample.Run(args, "(f=yellow)> ");
                 Environment.Exit(returnCode);
             }
         }

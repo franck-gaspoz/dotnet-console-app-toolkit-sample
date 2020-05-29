@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static DotNetConsoleSdk.Component.Shell.Terminal;
-using static DotNetConsoleSdk.Component.CLI.CommandEngine;
+using static DotNetConsoleSdk.Component.CommandLine.CommandEngine;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 using static DotNetConsoleSdk.Lib.Str;
@@ -12,7 +12,7 @@ using DotNetConsoleSdk.Component.Shell;
 
 namespace DotNetConsoleSdkSample
 {
-    public static class ShellSample
+    public static class TerminalSample
     {
         static void InitializeUI()
         {
@@ -61,7 +61,7 @@ namespace DotNetConsoleSdkSample
             SetCursorAtBeginWorkArea();
         }
 
-        public static int RunShell(string[] args,string? prompt = null)
+        public static int Run(string[] args,string? prompt = null)
         {
             try
             {
