@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DotNetConsoleSdkSample</RootNamespace>
+    <StartupObject>DotNetConsoleSdkSample.Program</StartupObject>
+    <Nullable>warnings</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\dotnet-console-sdk\dotnet-console-sdk.csproj" />
+  </ItemGroup>
+
+</Project>
