@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>DotNetConsoleSdkSample</RootNamespace>
     <StartupObject>DotNetConsoleSdkSample.Program</StartupObject>
-    <Nullable>warnings</Nullable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

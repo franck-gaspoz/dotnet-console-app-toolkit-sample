@@ -1,5 +1,5 @@
 ﻿using System;
-using static DotNetConsoleSdk.Component.CLI.CLI;
+using static DotNetConsoleSdk.Component.CLI.CommandEngine;
 using static DotNetConsoleSdk.DotNetConsole;
 
 namespace DotNetConsoleSdkSample
@@ -8,7 +8,7 @@ namespace DotNetConsoleSdkSample
     {
         static void Main(string[] args)
         {
-            InitializeCLI(args);
+            InitializeCommandEngine(args);
             if (HasArgs)
                 Print(Arg(0));
             else

@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static DotNetConsoleSdk.Component.Shell.Shell;
-using static DotNetConsoleSdk.Component.CLI.CLI;
+using static DotNetConsoleSdk.Component.Shell.Terminal;
+using static DotNetConsoleSdk.Component.CLI.CommandEngine;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 using static DotNetConsoleSdk.Lib.Str;
@@ -61,14 +61,14 @@ namespace DotNetConsoleSdkSample
             SetCursorAtBeginWorkArea();
         }
 
-        public static int RunShell(string[] args,string prompt = null)
+        public static int RunShell(string[] args,string? prompt = null)
         {
             try
             {
-                InitializeCLI(args);
-                InitializeShell(Eval);
+                InitializeCommandEngine(args);
+                InitializeTerminal(Eval);
                 InitializeUI();
-                return Shell.Readln(prompt);
+                return Terminal.Readln(prompt);
             }
             catch (Exception initException)
             {
