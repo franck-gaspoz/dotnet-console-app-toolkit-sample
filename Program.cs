@@ -14,7 +14,7 @@ namespace DotNetConsoleSdkSample
             else
             {
                 //RunSampleCLI("(f=yellow,exec=[[System.IO.Path.GetFileName(System.Environment.CurrentDirectory)]]) > ");
-                var returnCode = TerminalSample.Run(args, "(f=yellow)> ");
+                var returnCode = TerminalSample.Run(new string[] { "help" }, "(f=yellow)> ");
                 Environment.Exit(returnCode);
             }
         }

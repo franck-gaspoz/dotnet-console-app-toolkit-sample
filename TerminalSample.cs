@@ -70,8 +70,9 @@ namespace DotNetConsoleSdkSample
                 InitializeTerminal(Eval);
                 InitializeUI();
 
-                var retCode = Terminal.Readln(prompt);
-
+                SendInput(string.Join(' ', args));
+                var retCode = Terminal.Readln(prompt,false);
+                WaitReadln();
                 return retCode;
             }
             catch (Exception initException)
