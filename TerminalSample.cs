@@ -9,6 +9,7 @@ using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 using static DotNetConsoleSdk.Lib.Str;
 using DotNetConsoleSdk.Component.Shell;
+using System.Diagnostics;
 
 namespace DotNetConsoleSdkSample
 {
@@ -68,7 +69,10 @@ namespace DotNetConsoleSdkSample
                 InitializeCommandEngine(args);
                 InitializeTerminal(Eval);
                 InitializeUI();
-                return Terminal.Readln(prompt);
+
+                var retCode = Terminal.Readln(prompt);
+
+                return retCode;
             }
             catch (Exception initException)
             {
