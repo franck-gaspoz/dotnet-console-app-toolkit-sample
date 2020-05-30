@@ -22,7 +22,7 @@ namespace DotNetConsoleSdkSample
             AddFrame((frame) =>
             {
                 var s = "".PadLeft(frame.ActualWidth, '-');
-                var t = " dotnet-console-sdk - shell sdk sample";
+                var t = $" dotnet-console-sdk - terminal sample [{Environment.OSVersion} {(Environment.Is64BitOperatingSystem?"64":"32")}bits]";
                 return new List<string> {
                         $"{Bdarkblue}{Cyan}{s}",
 #pragma warning disable IDE0071
@@ -47,8 +47,8 @@ namespace DotNetConsoleSdkSample
                         $"{Bdarkblue} {Green}cur: {Cyan}{CursorLeft},{CursorTop}{White}"
                         +$" | {Green}win: {Cyan}{sc.WindowLeft},{sc.WindowTop}"
                         +$",{sc.WindowWidth},{sc.WindowHeight}{White}"
-                        +$" | {(sc.CapsLock?$"{Cyan}Caps":$"{Darkgray}Caps")}"
-                        +$" {(sc.NumberLock?$"{Cyan}Num":$"{Darkgray}Num")}{White}"
+                        //+$" | {(sc.CapsLock?$"{Cyan}Caps":$"{Darkgray}Caps")}"        // not supported on linux (ubuntu 18.04 wsl)
+                        //+$" {(sc.NumberLock?$"{Cyan}Num":$"{Darkgray}Num")}{White}"   // not supported on linux (ubuntu 18.04 wsl)
                         +$" | {Green}in={Cyan}{sc.InputEncoding.CodePage}"
                         +$" {Green}out={Cyan}{sc.OutputEncoding.CodePage}{White}"
                         +$" | {Green}drive: {Cyan}{GetCurrentDriveInfo()}{White}"
