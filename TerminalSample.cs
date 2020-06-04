@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static DotNetConsoleSdk.Component.CommandLineReader.CommandLineReader;
+using static DotNetConsoleSdk.Component.CommandLine.CommandLineReader.CommandLineReader;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 using static DotNetConsoleSdk.Lib.Str;
-using DotNetConsoleSdk.Component.CommandLineReader;
+using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
 using System.Diagnostics;
 
 namespace DotNetConsoleSdkSample
