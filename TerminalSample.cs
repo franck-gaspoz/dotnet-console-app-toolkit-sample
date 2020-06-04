@@ -9,7 +9,6 @@ using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 using static DotNetConsoleSdk.Lib.Str;
 using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
-using System.Diagnostics;
 
 namespace DotNetConsoleSdkSample
 {

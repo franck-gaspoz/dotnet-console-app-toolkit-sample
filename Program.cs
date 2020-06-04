@@ -23,8 +23,8 @@ namespace DotNetConsoleSdkSample
                 //var returnCode = TerminalSample.Run(new string[] { "help" ,"-v","find" }, "(f=yellow)> ");
                 //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","*.txt" }, "(f=yellow)> ");
                 //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","filename","-contains","content" }, "(f=yellow)> ");
-                //var returnCode = TerminalSample.Run(new string[] { "find" ,"-file","xx"}, "(f=yellow)> ");
-                var returnCode = TerminalSample.Run(new string[] { "find" ,"c:\\"}, "(f=yellow)> ");
+                //var returnCode = TerminalSample.Run(new string[] { "help" }, "(f=yellow)> ");
+                var returnCode = TerminalSample.Run(new string[] { "find" , @"""c:\\documents and settings""" , "-attr" , "-top"}, "(f=yellow)> ");
                 Environment.Exit(returnCode);
                 }
 #if catch_exceptions
