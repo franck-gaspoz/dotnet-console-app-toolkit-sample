@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static DotNetConsoleSdk.Component.Shell.Terminal;
-using static DotNetConsoleSdk.Component.CommandLine.CommandEngine;
+using static DotNetConsoleSdk.Component.CommandLineReader.CommandLineReader;
+using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 using static DotNetConsoleSdk.Lib.Str;
-using DotNetConsoleSdk.Component.Shell;
+using DotNetConsoleSdk.Component.CommandLineReader;
 using System.Diagnostics;
 
 namespace DotNetConsoleSdkSample
@@ -48,16 +48,16 @@ namespace DotNetConsoleSdkSample
                         $"{Bdarkblue} {Green}cur: {Cyan}{CursorLeft},{CursorTop}{White}"
                         +$" | {Green}win: {Cyan}{sc.WindowLeft},{sc.WindowTop}"
                         +$",{sc.WindowWidth},{sc.WindowHeight}{White}"
-                        //+$" | {(sc.CapsLock?$"{Cyan}Caps":$"{Darkgray}Caps")}"        // not supported on linux (ubuntu 18.04 wsl)
-                        //+$" {(sc.NumberLock?$"{Cyan}Num":$"{Darkgray}Num")}{White}"   // not supported on linux (ubuntu 18.04 wsl)
+                        +$" | {(sc.CapsLock?$"{Cyan}Caps":$"{Darkgray}Caps")}"        // TODO: not supported on linux (ubuntu 18.04 wsl)
+                        +$" {(sc.NumberLock?$"{Cyan}Num":$"{Darkgray}Num")}{White}"   // TODO: not supported on linux (ubuntu 18.04 wsl)
                         +$" | {Green}in={Cyan}{sc.InputEncoding.CodePage}"
                         +$" {Green}out={Cyan}{sc.OutputEncoding.CodePage}{White}"
                         +$" | {Green}drive: {Cyan}{GetCurrentDriveInfo()}{White}"
                         +$" | {Cyan}{System.DateTime.Now}{White}      "
                     };
             },
-            // use w=-2 to prevent print a car at bottom right of the window that lead to scroll on main terminals (ore else use AvoidConsoleAutoLineBreakAtEndOfLine=true) 
-            ConsoleColor.DarkBlue, 0, -1, -2, 1, DrawStrategy.OnTime, false, 1000);
+                // use w=-2 to prevent print a car at bottom right of the window that lead to scroll on main terminals (ore else use AvoidConsoleAutoLineBreakAtEndOfLine=true) 
+                ConsoleColor.DarkBlue, 0, -1, -2, 1, DrawStrategy.OnTime, false, 1000);
 
             SetCursorAtBeginWorkArea();
         }
@@ -66,12 +66,14 @@ namespace DotNetConsoleSdkSample
         {
             try
             {
-                InitializeCommandEngine(args);
-                InitializeTerminal(Eval);
+                InitializeCommandProcessor(args);
+                InitializeCommandLineReader(Eval);
                 InitializeUI();
 
-                SendInput(string.Join(' ', args));
-                var retCode = Terminal.Readln(prompt,false);
+                var input = string.Join(' ', args);
+                if (!string.IsNullOrWhiteSpace(input))
+                    SendInput(input);
+                var retCode = CommandLineReader.ReadCommandLine(prompt,false);
                 WaitReadln();
                 return retCode;
             }
