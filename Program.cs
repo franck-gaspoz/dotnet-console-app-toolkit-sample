@@ -3,6 +3,7 @@
 using System;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
+using static DotNetConsoleSdk.Component.CommandLine.CommandLineReader.CommandLineReader;
 
 namespace DotNetConsoleSdkSample
 {
@@ -10,30 +11,29 @@ namespace DotNetConsoleSdkSample
     {
         static void Main(string[] args)
         {
-#if catch_exceptions
-            try
+            InitializeCommandProcessor(args);
+            if (HasArgs)
             {
-#endif
                 InitializeCommandProcessor(args);
-                if (HasArgs)
-                    Print(Arg(0));
-                else
-                {
-                //RunSampleCLI("(f=yellow,exec=[[System.IO.Path.GetFileName(System.Environment.CurrentDirectory)]]) > ");
-                //var returnCode = TerminalSample.Run(new string[] { "help" ,"-v","find" }, "(f=yellow)> ");
-                //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","*.txt" }, "(f=yellow)> ");
-                //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","filename","-contains","content" }, "(f=yellow)> ");
-                //var returnCode = TerminalSample.Run(new string[] { "help" }, "(f=yellow)> ");
-                var returnCode = TerminalSample.Run(new string[] { "find" , @"""c:\\documents and settings""" , "-attr" , "-top"}, "(f=yellow)> ");
-                Environment.Exit(returnCode);
-                }
-#if catch_exceptions
+                ProcessCommandLine(
+                    string.Join(' ', args),
+                    Eval);
             }
-            catch (Exception ex)
+            else
             {
-                LogError(ex);
+                var prompt = "(f=yellow)> ";
+                //RunSampleCLI("(f=yellow,exec=[[System.IO.Path.GetFileName(System.Environment.CurrentDirectory)]]) > ");
+                //var returnCode = TerminalSample.Run(new string[] { "help" ,"-v","find" }, prompt);
+                //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","*.txt" }, prompt);
+                //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","filename","-contains","content" }, prompt);
+                //var returnCode = TerminalSample.Run(new string[] { "help" }, prompt);
+                //var returnCode = TerminalSample.Run(new string[] { "find" , @"""c:\\documents and settings""" , "-attr" , "-top"}, prompt);
+                //var returnCode = TerminalSample.Run(new string[] { "find" , "c:\\" , "-pat" , "*.sys" , "-attr" , "-top"}, prompt);
+                //var returnCode = TerminalSample.Run("find d:\\ -attr -dir -pat *prestashop*", prompt);
+                //var returnCode = TerminalSample.Run("module -load \"C: \Users\franc\Documents\Visual Studio 2019\Projects\Applications\dotnet-console-sdk\dotnet-console-sdk-sample\bin\Debug\netcoreapp3.1\dotnet-console-sdk.dll\"", prompt);
+                var returnCode = TerminalSample.Run("", prompt);
+                Environment.Exit(returnCode);
             }
-#endif
         }
     }
 }

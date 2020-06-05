@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineReader.CommandLineReader;
+using static DotNetConsoleSdk.Component.CommandLine.Parsing.CommandLineParser;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
@@ -59,6 +60,12 @@ namespace DotNetConsoleSdkSample
                 ConsoleColor.DarkBlue, 0, -1, -2, 1, DrawStrategy.OnTime, false, 1000);
 
             SetCursorAtBeginWorkArea();
+        }
+
+        public static int Run(string arg, string? prompt = null)
+        {
+            var splits = SplitExpr(arg);
+            return Run(splits, prompt);
         }
 
         public static int Run(string[] args,string? prompt = null)
