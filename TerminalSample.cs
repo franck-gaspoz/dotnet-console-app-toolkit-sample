@@ -1,15 +1,13 @@
-﻿using DotNetConsoleSdk.Component.UI;
+﻿using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
+using DotNetConsoleSdk.Component.CommandLine.Commands.FileSystem;
+using DotNetConsoleSdk.Component.UI;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineReader.CommandLineReader;
 using static DotNetConsoleSdk.Component.CommandLine.Parsing.CommandLineParser;
-using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
-using static DotNetConsoleSdk.Lib.Str;
-using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
 
 namespace DotNetConsoleSdkSample
 {
@@ -35,13 +33,6 @@ namespace DotNetConsoleSdkSample
                     };
             }, ConsoleColor.DarkBlue, 0, 0, -1, 3, DrawStrategy.OnViewResizedOnly, false);
 
-            string GetCurrentDriveInfo()
-            {
-                var rootDirectory = Path.GetPathRoot(Environment.CurrentDirectory);
-                var di = DriveInfo.GetDrives().Where(x => x.RootDirectory.FullName == rootDirectory).FirstOrDefault();
-                return (di == null) ? "?" : $"{rootDirectory} {HumanFormatOfSize(di.AvailableFreeSpace, 0, "")}/{HumanFormatOfSize(di.TotalSize, 0, "")} ({di.DriveFormat})";
-            }
-
             AddFrame((frame) =>
             {
                 return new List<string> {
@@ -52,7 +43,7 @@ namespace DotNetConsoleSdkSample
                         +$" {(sc.NumberLock?$"{Cyan}Num":$"{Darkgray}Num")}{White}"   // TODO: not supported on linux (ubuntu 18.04 wsl)
                         +$" | {Green}in={Cyan}{sc.InputEncoding.CodePage}"
                         +$" {Green}out={Cyan}{sc.OutputEncoding.CodePage}{White}"
-                        +$" | {Green}drive: {Cyan}{GetCurrentDriveInfo()}{White}"
+                        +$" | {Green}drive: {Cyan}{Drives.GetCurrentDriveInfo()}{White}"
                         +$" | {Cyan}{System.DateTime.Now}{White}      "
                     };
             },
@@ -72,15 +63,16 @@ namespace DotNetConsoleSdkSample
         {
             try
             {
-                InitializeCommandProcessor(args);
-                InitializeCommandLineReader(Eval);
+                var commandLineReader = new CommandLineReader();
+                commandLineReader.Initialize(Eval);
+                InitializeCommandProcessor(args,commandLineReader);
                 InitializeUI();
 
                 var input = string.Join(' ', args);
                 if (!string.IsNullOrWhiteSpace(input))
-                    SendInput(input);
-                var retCode = CommandLineReader.ReadCommandLine(prompt,false);
-                WaitReadln();
+                    commandLineReader.SendInput(input);
+                var retCode = commandLineReader.ReadCommandLine(prompt,false);
+                commandLineReader.WaitReadln();
                 return retCode;
             }
             catch (Exception initException)

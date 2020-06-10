@@ -3,7 +3,7 @@
 using System;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
-using static DotNetConsoleSdk.Component.CommandLine.CommandLineReader.CommandLineReader;
+using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
 
 namespace DotNetConsoleSdkSample
 {
@@ -11,17 +11,18 @@ namespace DotNetConsoleSdkSample
     {
         static void Main(string[] args)
         {
-            InitializeCommandProcessor(args);
+
             if (HasArgs)
             {
-                InitializeCommandProcessor(args);
-                ProcessCommandLine(
+                var commandLineReader = new CommandLineReader();
+                InitializeCommandProcessor(args, commandLineReader);
+                commandLineReader.ProcessCommandLine(
                     string.Join(' ', args),
                     Eval);
             }
             else
             {
-                var prompt = "(f=yellow)> ";
+                var prompt = $"{Green}> ";
                 //RunSampleCLI("(f=yellow,exec=[[System.IO.Path.GetFileName(System.Environment.CurrentDirectory)]]) > ");
                 //var returnCode = TerminalSample.Run(new string[] { "help" ,"-v","find" }, prompt);
                 //var returnCode = TerminalSample.Run(new string[] { "find","c:","-file","*.txt" }, prompt);
