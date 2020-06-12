@@ -1,10 +1,9 @@
 ﻿using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
-using DotNetConsoleSdk.Component.CommandLine.Commands.FileSystem;
+using DotNetConsoleSdk.Commands.FileSystem;
 using DotNetConsoleSdk.Component.UI;
 using System;
 using System.Collections.Generic;
 using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
-using static DotNetConsoleSdk.Component.CommandLine.CommandLineReader.CommandLineReader;
 using static DotNetConsoleSdk.Component.CommandLine.Parsing.CommandLineParser;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
@@ -64,7 +63,6 @@ namespace DotNetConsoleSdkSample
             try
             {
                 var commandLineReader = new CommandLineReader();
-                commandLineReader.Initialize(Eval);
                 InitializeCommandProcessor(args,commandLineReader);
                 InitializeUI();
 

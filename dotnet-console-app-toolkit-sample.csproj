@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotnet-console-sdk\dotnet-console-sdk.csproj" />
+    <ProjectReference Include="..\dotnet-console-app-toolkit\dotnet-console-app-toolkit.csproj" />
   </ItemGroup>
 
 </Project>
