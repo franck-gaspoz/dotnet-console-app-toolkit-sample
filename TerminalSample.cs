@@ -8,7 +8,7 @@ using static DotNetConsoleSdk.Component.CommandLine.Parsing.CommandLineParser;
 using static DotNetConsoleSdk.DotNetConsole;
 using sc = System.Console;
 
-namespace DotNetConsoleSdkSample
+namespace DotNetConsoleAppToolkitSample
 {
     public static class TerminalSample
     {

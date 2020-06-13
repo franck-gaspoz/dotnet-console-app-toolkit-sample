@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>DotNetConsoleSdkSample</RootNamespace>
-    <StartupObject>DotNetConsoleSdkSample.Program</StartupObject>
+    <RootNamespace>DotNetConsoleAppToolkitSample</RootNamespace>
+    <StartupObject>DotNetConsoleAppToolkitSample.Program</StartupObject>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

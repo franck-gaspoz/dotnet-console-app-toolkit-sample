@@ -5,7 +5,7 @@ using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
 using static DotNetConsoleSdk.DotNetConsole;
 using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
 
-namespace DotNetConsoleSdkSample
+namespace DotNetConsoleAppToolkitSample
 {
     class Program
     {
