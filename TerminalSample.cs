@@ -20,7 +20,7 @@ namespace DotNetConsoleSdkSample
             AddFrame((frame) =>
             {
                 var s = "".PadLeft(frame.ActualWidth, '-');
-                var t = $" dotnet-console-sdk - terminal sample [{Environment.OSVersion} {(Environment.Is64BitOperatingSystem?"64":"32")}bits]";
+                var t = $" Dot Net Console App Toolkit - terminal sample [{Environment.OSVersion} {(Environment.Is64BitOperatingSystem?"64":"32")}bits]";
                 return new List<string> {
                         $"{Bdarkblue}{Cyan}{s}",
 #pragma warning disable IDE0071

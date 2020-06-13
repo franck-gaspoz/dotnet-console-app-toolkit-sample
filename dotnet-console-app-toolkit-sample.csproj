@@ -12,4 +12,8 @@
     <ProjectReference Include="..\dotnet-console-app-toolkit\dotnet-console-app-toolkit.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Doc\" />
+  </ItemGroup>
+
 </Project>
