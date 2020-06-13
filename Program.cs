@@ -1,9 +1,9 @@
 ﻿//#define catch_exceptions
 
+using DotNetConsoleAppToolkit.Component.CommandLine;
+using DotNetConsoleAppToolkit.Component.CommandLine.CommandLineReader;
 using System;
-using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
-using static DotNetConsoleSdk.DotNetConsole;
-using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
+using static DotNetConsoleAppToolkit.DotNetConsole;
 
 namespace DotNetConsoleAppToolkitSample
 {
@@ -11,14 +11,13 @@ namespace DotNetConsoleAppToolkitSample
     {
         static void Main(string[] args)
         {
-
-            if (HasArgs)
+            var commandLineProcessor = new CommandLineProcessor(args);
+            if (commandLineProcessor.HasArgs)
             {
-                var commandLineReader = new CommandLineReader();
-                InitializeCommandProcessor(args, commandLineReader);
+                var commandLineReader = new CommandLineReader(commandLineProcessor);
                 commandLineReader.ProcessCommandLine(
                     string.Join(' ', args),
-                    Eval);
+                    commandLineProcessor.Eval);
             }
             else
             {

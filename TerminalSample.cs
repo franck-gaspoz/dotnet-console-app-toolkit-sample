@@ -1,12 +1,13 @@
-﻿using DotNetConsoleSdk.Component.CommandLine.CommandLineReader;
-using DotNetConsoleSdk.Commands.FileSystem;
-using DotNetConsoleSdk.Component.UI;
+﻿using DotNetConsoleAppToolkit.Component.CommandLine.CommandLineReader;
+using DotNetConsoleAppToolkit.Commands.FileSystem;
+using DotNetConsoleAppToolkit.Component.UI;
 using System;
 using System.Collections.Generic;
-using static DotNetConsoleSdk.Component.CommandLine.CommandLineProcessor;
-using static DotNetConsoleSdk.Component.CommandLine.Parsing.CommandLineParser;
-using static DotNetConsoleSdk.DotNetConsole;
+using static DotNetConsoleAppToolkit.Component.CommandLine.CommandLineProcessor;
+using static DotNetConsoleAppToolkit.Component.CommandLine.Parsing.CommandLineParser;
+using static DotNetConsoleAppToolkit.DotNetConsole;
 using sc = System.Console;
+using DotNetConsoleAppToolkit.Component.CommandLine;
 
 namespace DotNetConsoleAppToolkitSample
 {
@@ -62,8 +63,8 @@ namespace DotNetConsoleAppToolkitSample
         {
             try
             {
-                var commandLineReader = new CommandLineReader();
-                InitializeCommandProcessor(args,commandLineReader);
+                var commandLineProcessor = new CommandLineProcessor(args);
+                var commandLineReader = new CommandLineReader(commandLineProcessor);
                 InitializeUI();
 
                 var input = string.Join(' ', args);
